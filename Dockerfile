@@ -25,7 +25,7 @@ run chmod +x /launch.sh && \
     sed -i "s|#node_keys_indexable|node_keys_indexable|g" /var/lib/neo4j/conf/neo4j.properties && \ 
     echo "remote_shell_host=0.0.0.0" >> /var/lib/neo4j/conf/neo4j.properties && \
     cd /var/lib/neo4j/plugins && \
-    wget http://graphaware.com/downloads/graphaware-server-community-all-2.2.2.31.jar  && \
+    wget http://graphaware.com/downloads/graphaware-server-community-all-2.2.2.31.jar && \
     wget http://graphaware.com/downloads/graphaware-warmup-2.2.2.31.5.jar
     
 # expose REST and shell server ports
