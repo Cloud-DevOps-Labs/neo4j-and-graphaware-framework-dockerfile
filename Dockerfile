@@ -10,7 +10,7 @@ maintainer Tiago Pires, tandrepires@gmail.com
 
 run wget -O - http://debian.neo4j.org/neotechnology.gpg.key | apt-key add - && \
     echo 'deb http://debian.neo4j.org/repo stable/' > /etc/apt/sources.list.d/neo4j.list && \
-    apt-get update ; apt-get install neo4j=2.1.6 -y
+    apt-get update ; apt-get install neo4j=2.1.8 -y
 
 ## add launcher and set execute property
 ## clean sources
@@ -25,8 +25,8 @@ run chmod +x /launch.sh && \
     sed -i "s|#node_keys_indexable|node_keys_indexable|g" /var/lib/neo4j/conf/neo4j.properties && \ 
     echo "remote_shell_host=0.0.0.0" >> /var/lib/neo4j/conf/neo4j.properties && \
     cd /var/lib/neo4j/plugins && \
-    wget http://graphaware.com/downloads/graphaware-server-community-all-2.1.6.26.jar && \
-    wget http://graphaware.com/downloads/graphaware-warmup-2.1.6.26.4.jar
+    wget http://graphaware.com/downloads/graphaware-server-community-all-2.1.7.28.jar && \
+    wget http://graphaware.com/downloads/graphaware-warmup-2.1.7.28.5.jar
     
 # expose REST and shell server ports
 expose 7474
