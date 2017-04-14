@@ -1,38 +1,45 @@
-## Neo4J dependency: java
-## get java from official repo
-from java:latest
-maintainer Tiago Pires, tandrepires@gmail.com
+FROM openjdk:8-jre-alpine
 
-## install neo4j according to http://www.neo4j.org/download/linux
-# Import neo4j signing key
-# Create an apt sources.list file
-# Find out about the files in neo4j repo ; install neo4j community edition
+maintainer Linonetwo, linonetwo012@gmail.com
 
-run wget -O - http://debian.neo4j.org/neotechnology.gpg.key | apt-key add - && \
-    echo 'deb http://debian.neo4j.org/repo stable/' > /etc/apt/sources.list.d/neo4j.list && \
-    apt-get update ; apt-get install neo4j=2.2.2 -y
+# from offical Dockerfile
 
-## add launcher and set execute property
-## clean sources
-## turn on indexing: http://chrislarson.me/blog/install-neo4j-graph-database-ubuntu
-## enable neo4j indexing, and set indexable keys to name,age
-# enable shell server on all network interfaces
+RUN apk add --no-cache --quiet \
+    bash \
+    curl
 
-add launch.sh /
-run chmod +x /launch.sh && \
-    apt-get clean && \
-    sed -i "s|#node_auto_indexing|node_auto_indexing|g" /var/lib/neo4j/conf/neo4j.properties && \
-    sed -i "s|#node_keys_indexable|node_keys_indexable|g" /var/lib/neo4j/conf/neo4j.properties && \ 
-    echo "remote_shell_host=0.0.0.0" >> /var/lib/neo4j/conf/neo4j.properties && \
-    cd /var/lib/neo4j/plugins && \
-    wget http://graphaware.com/downloads/graphaware-server-community-all-2.2.2.31.jar && \
-    wget http://graphaware.com/downloads/graphaware-warmup-2.2.2.31.5.jar
-    
-# expose REST and shell server ports
-expose 7474
-expose 1337
+ENV NEO4J_SHA256 f0d79b4a98672dc527b708113644b8961ba824668c354e61dc4d2a16d8484880
+ENV NEO4J_TARBALL neo4j-community-3.1.3-unix.tar.gz
+ARG NEO4J_URI=http://dist.neo4j.org/neo4j-community-3.1.3-unix.tar.gz
 
-workdir /
+COPY ./local-package/* /tmp/
 
-## entrypoint
-cmd ["/bin/bash", "-c", "/launch.sh"]
+RUN curl --fail --silent --show-error --location --remote-name ${NEO4J_URI} \
+    && echo "${NEO4J_SHA256}  ${NEO4J_TARBALL}" | sha256sum -csw - \
+    && tar --extract --file ${NEO4J_TARBALL} --directory /var/lib \
+    && mv /var/lib/neo4j-* /var/lib/neo4j \
+    && rm ${NEO4J_TARBALL}
+
+# add graphaware
+
+WORKDIR /var/lib/neo4j/plugins
+
+run wget https://products.graphaware.com/download/framework-server-community/graphaware-server-community-all-3.1.3.46.jar && \
+    wget https://products.graphaware.com/download/timetree/graphaware-timetree-3.1.3.45.26.jar
+
+# from offical Dockerfile
+
+WORKDIR /var/lib/neo4j
+
+RUN mv data /data \
+    && ln -s /data
+
+VOLUME /data
+
+COPY launch.sh /launch.sh
+
+
+EXPOSE 7474 7473 7687
+
+ENTRYPOINT ["/launch.sh"]
+CMD ["neo4j"]
