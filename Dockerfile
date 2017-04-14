@@ -12,8 +12,6 @@ ENV NEO4J_SHA256 f0d79b4a98672dc527b708113644b8961ba824668c354e61dc4d2a16d848488
 ENV NEO4J_TARBALL neo4j-community-3.1.3-unix.tar.gz
 ARG NEO4J_URI=http://dist.neo4j.org/neo4j-community-3.1.3-unix.tar.gz
 
-COPY ./local-package/* /tmp/
-
 RUN curl --fail --silent --show-error --location --remote-name ${NEO4J_URI} \
     && echo "${NEO4J_SHA256}  ${NEO4J_TARBALL}" | sha256sum -csw - \
     && tar --extract --file ${NEO4J_TARBALL} --directory /var/lib \
@@ -23,8 +21,10 @@ RUN curl --fail --silent --show-error --location --remote-name ${NEO4J_URI} \
 # add graphaware
 
 WORKDIR /var/lib/neo4j/plugins
-
-run wget https://products.graphaware.com/download/framework-server-community/graphaware-server-community-all-3.1.3.46.jar && \
+run apk update && \
+    apk add ca-certificates wget && \
+    update-ca-certificates && \
+    wget https://products.graphaware.com/download/framework-server-community/graphaware-server-community-all-3.1.3.46.jar && \
     wget https://products.graphaware.com/download/timetree/graphaware-timetree-3.1.3.45.26.jar
 
 # from offical Dockerfile
