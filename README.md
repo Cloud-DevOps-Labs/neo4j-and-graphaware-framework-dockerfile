@@ -1,11 +1,10 @@
-neo4j
-=====
+# Dockerfile: Neo4j@2.1.7 + GraphAware
 
 Neo4j is a highly scalable, robust (fully ACID) native graph database. Neo4j is used in mission-critical apps by thousands of leading, startups, enterprises, and governments around the world.
 
 With the Dockerfile on repository you've a docker neo4j community edition image ready to go.
 
-### Setup
+## Setup
 
 1. Execute this command:
 
