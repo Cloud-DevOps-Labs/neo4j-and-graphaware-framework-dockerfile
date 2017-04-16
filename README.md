@@ -29,4 +29,4 @@ To directly *pull* you can:
 
 ## Thanks
 
-Thanks to [tpires](https://github.com/tpires) for its original [repo](https://github.com/tpires/neo4j) and [linonetwo](https://github.com/linonetwo) for pumping version and several improvemnts 
+Thanks to [tpires](https://github.com/tpires) for its original [repo](https://github.com/tpires/neo4j) and [linonetwo](https://github.com/linonetwo) for pumping version to 3.1.3 and [several improvements](https://github.com/Pelirrojo/neo4j-and-graphaware-framework-dockerfile/pull/1)
