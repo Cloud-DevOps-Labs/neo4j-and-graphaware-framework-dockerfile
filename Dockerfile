@@ -26,7 +26,8 @@ run apk update && \
     apk add ca-certificates wget && \
     update-ca-certificates && \
     wget https://products.graphaware.com/download/framework-server-community/graphaware-server-community-all-3.1.3.46.jar && \
-    wget https://products.graphaware.com/download/timetree/graphaware-timetree-3.1.3.45.26.jar
+    wget https://products.graphaware.com/download/timetree/graphaware-timetree-3.1.3.45.26.jar && \
+    wget https://products.graphaware.com/download/uuid/graphaware-uuid-3.1.3.45.14.jar
 
 ## from offical Dockerfile
 
