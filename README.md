@@ -1,5 +1,5 @@
 [![Docker Automated buil](https://img.shields.io/docker/automated/jrottenberg/ffmpeg.svg)](https://hub.docker.com/r/pelirrojo/neo4j-and-graphaware-framework)
-[![Docker Build Statu](https://img.shields.io/docker/build/pelirrojo/neo4j-and-graphaware-framework.svg)](https://hub.docker.com/r/pelirrojo/neo4j-and-graphaware-framework)
+[![Docker Build Statu](https://img.shields.io/docker/build/pelirrojo/neo4j-and-graphaware-framework.svg)](https://hub.docker.com/r/pelirrojo/neo4j-and-graphaware-framework/builds/)
 
 # Dockerfile: Neo4j + GraphAware
 
