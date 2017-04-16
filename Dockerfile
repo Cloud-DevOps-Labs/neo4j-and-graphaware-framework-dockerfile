@@ -22,7 +22,7 @@ RUN curl --fail --silent --show-error --location --remote-name ${NEO4J_URI} \
 
 
 WORKDIR /var/lib/neo4j/plugins
-run apk update && \
+RUN apk update && \
     apk add ca-certificates wget && \
     update-ca-certificates && \
     wget https://products.graphaware.com/download/framework-server-community/graphaware-server-community-all-3.1.3.46.jar && \
@@ -42,7 +42,8 @@ COPY launch.sh /launch.sh
 
 ## enable graphaware framework
 
-RUN echo 'dbms.unmanaged_extension_classes=com.graphaware.server=/graphaware' >> conf/neo4j.conf
+COPY neo4j.conf.addition conf/neo4j.conf.addition
+RUN (cat << conf/neo4j.conf.addition) >> conf/neo4j.conf
 
 ## export port and start, where launch.sh is from offical repo
 
