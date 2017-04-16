@@ -1,14 +1,19 @@
-neo4j
-=====
+# Dockerfile: Neo4j + GraphAware
 
-Neo4j is a highly scalable, robust (fully ACID) native graph database. Neo4j is used in mission-critical apps by thousands of leading, startups, enterprises, and governments around the world.
+## Build
 
-With the Dockerfile on repository you've a docker neo4j community edition image ready to go.
+```docker build -t neo4j-graphaware .```
 
-### Setup
+Then do whatever you want with this image.
 
-1. Execute this command:
+## Add more plugins
 
-	`docker run -i -t -d --name neo4j --cap-add=SYS_RESOURCE -p 7474:7474 tpires/neo4j`
+Just add wget xxx after comment ```# add graphaware``` to Dockerfile.
 
-2. Access to http://localhost:7474 with your browser.
+Don't forget the ```&& \``` after each line!
+
+## Reference
+
+- launch.sh is copied from [neo4j's offical Dockerfile repo](https://github.com/neo4j/docker-neo4j-publish/blob/a50bed8c92cb9d24adb6b5a7353455c222b1be9d/3.1.3/community/docker-entrypoint.sh) and silghtly modified
+- Dockerfile is a merge from [neo4j's offical Dockerfile repo](https://github.com/neo4j/docker-neo4j-publish/blob/a50bed8c92cb9d24adb6b5a7353455c222b1be9d/3.1.3/community/Dockerfile) and [Pelirrojo's work back from 2015](https://github.com/Pelirrojo/neo4j-and-graphaware-framework-dockerfile/blob/2.2/Dockerfile)
+- graphaware download list is getting from [is's community download list](https://products.graphaware.com/?dir=framework-server-community)
