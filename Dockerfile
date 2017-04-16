@@ -2,7 +2,7 @@ FROM openjdk:8-jre-alpine
 
 maintainer Linonetwo, linonetwo012@gmail.com
 
-# from offical Dockerfile
+## from offical Dockerfile
 
 RUN apk add --no-cache --quiet \
     bash \
@@ -18,7 +18,8 @@ RUN curl --fail --silent --show-error --location --remote-name ${NEO4J_URI} \
     && mv /var/lib/neo4j-* /var/lib/neo4j \
     && rm ${NEO4J_TARBALL}
 
-# add graphaware
+## add graphaware
+
 
 WORKDIR /var/lib/neo4j/plugins
 run apk update && \
@@ -27,7 +28,7 @@ run apk update && \
     wget https://products.graphaware.com/download/framework-server-community/graphaware-server-community-all-3.1.3.46.jar && \
     wget https://products.graphaware.com/download/timetree/graphaware-timetree-3.1.3.45.26.jar
 
-# from offical Dockerfile
+## from offical Dockerfile
 
 WORKDIR /var/lib/neo4j
 
@@ -38,6 +39,11 @@ VOLUME /data
 
 COPY launch.sh /launch.sh
 
+## enable graphaware framework
+
+RUN echo 'dbms.unmanaged_extension_classes=com.graphaware.server=/graphaware' >> conf/neo4j.conf
+
+## export port and start, where launch.sh is from offical repo
 
 EXPOSE 7474 7473 7687
 
