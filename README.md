@@ -1,4 +1,4 @@
-# Dockerfile: Neo4j + GraphAware
+# Dockerfile: Neo4j@3.1.3 + GraphAware
 
 Neo4j is a highly scalable, robust (fully ACID) native graph database. Neo4j is used in mission-critical apps by thousands of leading, startups, enterprises, and governments around the world. With this Dockerfile and it's DockerHub repository you've a  neo4j 3.1.3 community edition image with [Graphaware Frameworks](https://github.com/graphaware/neo4j-framework) and [WarmUp](https://github.com/graphaware/neo4j-warmup) plugins ready to go.
 
