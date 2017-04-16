@@ -43,7 +43,7 @@ COPY launch.sh /launch.sh
 ## enable graphaware framework
 
 COPY neo4j.conf.addition conf/neo4j.conf.addition
-RUN (cat << conf/neo4j.conf.addition) >> conf/neo4j.conf
+RUN cat conf/neo4j.conf.addition >> conf/neo4j.conf
 
 ## export port and start, where launch.sh is from offical repo
 
